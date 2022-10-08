@@ -1,0 +1,38 @@
+server:
+  port: 8081
+spring:
+  rabbitmq:
+    addresses: 192.168.47.111
+    port: 5672
+    username: xiaotian
+    password: 123456
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual      #设置消息手动确认
+  #        prefetch: 1                   #一次发送一次消息，实现公平发送
+  application:
+    name: hmdp
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/hmdp?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8
+    username: root
+    password: 123456
+  redis:
+    host: 192.168.47.111
+    port: 6379
+    password: tjsandtsl1314
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+    timeout: 5000
+  jackson:
+    default-property-inclusion: non_null # JSON处理时忽略非空字段
+mybatis-plus:
+  type-aliases-package: com.hmdp.entity # 别名扫描包
+logging:
+  level:
+    com.hmdp: debug
